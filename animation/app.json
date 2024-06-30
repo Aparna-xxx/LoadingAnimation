@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/animations/chaiAnimation.json",
       "resizeMode": "contain",
-      "backgroundColor": "#A7C7E7"
+      "backgroundColor": "#FFF"
     },
     "ios": {
       "supportsTablet": true
