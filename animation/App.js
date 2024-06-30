@@ -12,7 +12,7 @@ export default function App() {
     // Simulate loading process
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Adjust the time as needed
+    }, 5000); // Adjust the time as needed
   }, []);
 
   return (

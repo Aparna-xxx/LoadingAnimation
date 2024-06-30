@@ -1,13 +1,26 @@
-import { View , StyleSheet,  Animated, Easing,} from 'react-native';
+import { View , StyleSheet,  Animated, Easing, Text} from 'react-native';
 import LottieView from 'lottie-react-native';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  useFonts,
+  Manrope_200ExtraLight,
+  Manrope_300Light,
+  Manrope_400Regular,
+  Manrope_500Medium,
+  Manrope_600SemiBold,
+  Manrope_700Bold,
+  Manrope_800ExtraBold,
+} from '@expo-google-fonts/manrope';
 
 
-function SplashScreen( ){
+function AnimationScreen( ){
   
   const moveAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(1)).current;
-
+  const [animationComplete, setAnimationComplete] = useState(false);
+  const [displayedText, setDisplayedText] = useState('');
+  const fullText = '"This is the content which I wish to render on the loading screen"';
+ 
 
   useEffect(() => {
     Animated.parallel([
@@ -23,35 +36,80 @@ function SplashScreen( ){
         easing: Easing.inOut(Easing.ease),
         useNativeDriver: true,
       }),
-    ]).start();
+    ]).start(() => {
+      setAnimationComplete(true);
+    });
   }, [moveAnim, scaleAnim]);
+
+
+  useEffect(() => {
+    if (animationComplete) {
+      let currentText = '';
+      let index = 0;
+      const intervalId = setInterval(() => {
+        currentText += fullText[index];
+        setDisplayedText(currentText);
+        index++;
+        if (index >= fullText.length) {
+          clearInterval(intervalId);
+        }
+      }, 20); // Adjust the speed of the typing effect here
+    }
+  }, [animationComplete]);
+
+
+  let [fontsLoaded] = useFonts({
+    Manrope_200ExtraLight,
+    Manrope_300Light,
+    Manrope_400Regular,
+    Manrope_500Medium,
+    Manrope_600SemiBold,
+    Manrope_700Bold,
+    Manrope_800ExtraBold,
+  });
+
+  
+
+  if(fontsLoaded){
 
   
     return (
         <View style={styles.container}>
         <View style={styles.welcome}>
-        <Animated.View
-        style={[
-          styles.animatedView,
-          {
-            transform: [
-              { translateY: moveAnim },
-              { scale: scaleAnim },
-            ],
-          },
-        ]}
-      >
-             <LottieView  autoPlay
-                loop={false}
-                style={styles.gifStyle}source={require('../assets/animations/loadFood.json') }  />
-      </Animated.View>
-             </View>
+          <View>
+          <Animated.View
+              style={[
+                styles.animatedView,
+                {
+                  transform: [
+                    { translateY: moveAnim },
+                    { scale: scaleAnim },
+                  ],
+                },
+              ]}
+            >
+              <LottieView  autoPlay
+                  loop={true}
+                  style={styles.gifStyle}source={require('../assets/animations/loadFood.json') }  />
+          </Animated.View>
+          {animationComplete && 
+              <View style={styles.textContainer}>
+                <Text style={styles.titleTextStyle}>Title</Text>
+                <View style={styles.innerTextContainer}>
+                  <Text style={styles.contentTextStyle}>{displayedText}</Text>  
+                </View>        
+              </View>
+            }
+          </View>
+         
         </View>
+      </View>
       );
+    }
 
 }
 
-export default SplashScreen;
+export default AnimationScreen;
 
 const styles = StyleSheet.create({
     container: {
@@ -62,19 +120,48 @@ const styles = StyleSheet.create({
       
     },
     welcome: {
-      height:300,
-      aspectRatio:1,
       alignItems:'center',
       justifyContent:'center',
+      //borderWidth:2,
     },
     animatedView: {
     width: 300,
     height: 300,
+    //borderWidth:2,
   
   },
   gifStyle: {
     flex:1,
     
+  },
+  textContainer: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  titleTextStyle:{
+    marginTop:20,
+    fontFamily:'Manrope_500Medium',
+    fontSize:32,
+    fontWeight:'bold',
+    color:'#001F5B',
+    //borderWidth:2,
+  },
+  contentTextStyle:{
+    fontStyle:'italic',
+    fontFamily:'Manrope_200ExtraLight',
+    fontWeight:'condensed',
+    textAlign:'center',
+    color:'#001F5B',
+    fontSize:13,
+  },
+  innerTextContainer:{
+    marginTop:20,
+    width:'85%',
+    
+    
+    //borderWidth:2,
   }
   });
+  
   

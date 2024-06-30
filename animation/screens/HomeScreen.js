@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   text:{
     fontSize: 20,
     fontWeight:'200',
-    color: '#fff',
+    color: '#001F5B',
     fontSize:30,
   },
     container: {
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
       
     }
   });
-  
+
