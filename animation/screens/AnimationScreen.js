@@ -1,6 +1,7 @@
 import { View , StyleSheet,  Animated, Easing, Text} from 'react-native';
 import LottieView from 'lottie-react-native';
 import React, { useEffect, useRef, useState } from 'react';
+import Colours from '../util/Colours';
 import {
   useFonts,
   Manrope_200ExtraLight,
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor:'#EEF5FF',
+      backgroundColor:Colours.SplashBg,
       justifyContent: 'center',
       
     },
@@ -144,7 +145,7 @@ const styles = StyleSheet.create({
     fontFamily:'Manrope_500Medium',
     fontSize:32,
     fontWeight:'bold',
-    color:'#001F5B',
+    color:Colours.SplashText,
     //borderWidth:2,
   },
   contentTextStyle:{
@@ -152,7 +153,7 @@ const styles = StyleSheet.create({
     fontFamily:'Manrope_200ExtraLight',
     fontWeight:'condensed',
     textAlign:'center',
-    color:'#001F5B',
+    color:Colours.SplashText,
     fontSize:13,
   },
   innerTextContainer:{
