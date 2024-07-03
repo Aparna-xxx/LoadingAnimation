@@ -1,9 +1,35 @@
-import { View , StyleSheet, Text, ImageBackground,SafeAreaView, StatusBar} from 'react-native';
+import { View , StyleSheet, Text, ImageBackground,SafeAreaView, StatusBar,TextInput} from 'react-native';
 import Colours from '../util/Colours';
+import {
+  useFonts,
+  Manrope_200ExtraLight,
+  Manrope_300Light,
+  Manrope_400Regular,
+  Manrope_500Medium,
+  Manrope_600SemiBold,
+  Manrope_700Bold,
+  Manrope_800ExtraBold,
+} from '@expo-google-fonts/manrope';
+
+
+
+
+
 
 
 
 function HomeScreen(){
+
+  let [fontsLoaded] = useFonts({
+    Manrope_200ExtraLight,
+    Manrope_300Light,
+    Manrope_400Regular,
+    Manrope_500Medium,
+    Manrope_600SemiBold,
+    Manrope_700Bold,
+    Manrope_800ExtraBold,
+  });
+  if (fontsLoaded) {
     return (      
         <SafeAreaView style={styles.safeArea}>
         <StatusBar backgroundColor={Colours.SplashBg} barStyle='dark-content'  />
@@ -11,7 +37,9 @@ function HomeScreen(){
             <ImageBackground source={require("../assets/images/psg.jpg")} style={styles.backgroundContainer} imageStyle={styles.backgroundImage}>
               <View style={styles.contentContainer}>
                   <View style={styles.cardContainer}>
-                    <Text >Welcome to the PSG App</Text>
+                    <View style={styles.cardTitleContainer}>
+                      <Text style={styles.cardTitleText} >Log into Food Zone</Text>
+                    </View>
                   </View>
               </View>
             </ImageBackground>
@@ -19,6 +47,7 @@ function HomeScreen(){
         </SafeAreaView>
        
       );
+    }
 
 }
 
@@ -46,13 +75,15 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       
+      
     },
     contentContainer: {
       justifyContent:'center',
       alignItems:'center',
       alignContent:'center',
-      marginTop:20,
-      
+      justifyContent:'flex-end',
+      height:'100%',
+      paddingBottom:'8%',         
     },
     backgroundContainer: {
       flex: 1,
@@ -60,16 +91,28 @@ const styles = StyleSheet.create({
     },
     backgroundImage: {
       resizeMode:'cover',
-      opacity:0.5,
+      opacity:0.8,
     },
     cardContainer:{
       height:'80%',
-      backgroundColor:Colours.SplashBg,
+      backgroundColor:'#fff',
       borderRadius:20,
-      width:'85%',
-      opacity:0.8,
-      padding:10,
-      alignItems:'center'
-    }
+      width:'93%',
+      opacity:0.7,
+      paddingVertical:30,
+      paddingHorizontal:10,
+      alignItems:'center',
+    },
+    cardTitleText:{
+      color:'#000',
+      fontFamily:'Manrope_500Medium',
+      fontSize:28,
+     
+    },
+    
+    cardTitleContainer:{
+      marginBottom:40
+    },
+   
   });
 

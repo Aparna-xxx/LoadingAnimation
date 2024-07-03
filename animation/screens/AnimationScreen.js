@@ -20,7 +20,7 @@ function AnimationScreen( ){
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const [animationComplete, setAnimationComplete] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
-  const fullText = '"This is the content which I wish to render on the loading screen"';
+  const fullText = '"One stop shop for PSG canteen"';
  
 
   useEffect(() => {
@@ -95,7 +95,7 @@ function AnimationScreen( ){
           </Animated.View>
           {animationComplete && 
               <View style={styles.textContainer}>
-                <Text style={styles.titleTextStyle}>Title</Text>
+                <Text style={styles.titleTextStyle}>PSG Food Zone</Text>
                 <View style={styles.innerTextContainer}>
                   <Text style={styles.contentTextStyle}>{displayedText}</Text>  
                 </View>        
