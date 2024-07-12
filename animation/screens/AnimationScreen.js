@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor:Colours.SplashBg,
+      backgroundColor:Colours.WhiteBlue200,
       justifyContent: 'center',
       
     },
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     fontFamily:'Manrope_500Medium',
     fontSize:32,
     fontWeight:'bold',
-    color:Colours.SplashText,
+    color:Colours.DarkBlue100,
     //borderWidth:2,
   },
   contentTextStyle:{
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     fontFamily:'Manrope_200ExtraLight',
     fontWeight:'condensed',
     textAlign:'center',
-    color:Colours.SplashText,
+    color:Colours.DarkBlue100,
     fontSize:13,
   },
   innerTextContainer:{

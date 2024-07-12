@@ -32,15 +32,20 @@ function HomeScreen(){
   if (fontsLoaded) {
     return (      
         <SafeAreaView style={styles.safeArea}>
-        <StatusBar backgroundColor={Colours.SplashBg} barStyle='dark-content'  />
+        <StatusBar backgroundColor={Colours.WhiteBlue200} barStyle='dark-content'  />
           <View style={styles.container}>
             <ImageBackground source={require("../assets/images/psg.jpg")} style={styles.backgroundContainer} imageStyle={styles.backgroundImage}>
               <View style={styles.contentContainer}>
-                  <View style={styles.cardContainer}>
-                    <View style={styles.cardTitleContainer}>
-                      <Text style={styles.cardTitleText} >Log into Food Zone</Text>
-                    </View>
+                  <View style={styles.cardTransparentContainer}>
+                    
                   </View>
+                  <View style={styles.cardOpaqueContainer}>
+                      <Text style={styles.cardTitleText} >Log into Food Zone</Text>
+                      <View style={styles.loginBox}>                        
+                          <TextInput style={styles.loginText}  placeholder="college ID"/ >
+                          <TextInput style={styles.loginText} placeholder="Password"/>             
+                      </View>
+                    </View>
               </View>
             </ImageBackground>
           </View>
@@ -62,7 +67,7 @@ const styles = StyleSheet.create({
   text:{
     fontSize: 20,
     fontWeight:'200',
-    color: Colours.SplashText,
+    color: Colours.DarkBlue,
     fontSize:30,
   },
     container: {
@@ -71,7 +76,7 @@ const styles = StyleSheet.create({
       alignContent:'center',
       flex: 1,
       // backgroundColor: '#F8DE7E',
-      backgroundColor:Colours.SplashBg,
+      backgroundColor:Colours.WhiteBlue200,
       alignItems: 'center',
       justifyContent: 'center',
       
@@ -93,26 +98,55 @@ const styles = StyleSheet.create({
       resizeMode:'cover',
       opacity:0.8,
     },
-    cardContainer:{
+    cardTransparentContainer:{
       height:'80%',
       backgroundColor:'#fff',
       borderRadius:20,
       width:'93%',
-      opacity:0.7,
+      opacity:0.5,
       paddingVertical:30,
       paddingHorizontal:10,
       alignItems:'center',
     },
     cardTitleText:{
-      color:'#000',
+      color:Colours.DarkBlue100,
       fontFamily:'Manrope_500Medium',
       fontSize:28,
+    
      
     },
     
-    cardTitleContainer:{
-      marginBottom:40
+    cardOpaqueContainer:{
+      position: 'absolute',
+      top: '26%', // Adjust this value as needed
+      left: '2%', // Adjust this value as needed
+      right: '2%', // Adjust this value as needed
+      alignItems: 'center',
+      borderRadius: 10,
+      
     },
+
+    loginText:{
+      width:'100%',
+      backgroundColor:'white',
+    },
+
+    loginBox:{
+      width:'85%'
+    },
+
+    loginText:{
+      marginTop:'10%',
+      //borderWidth:2,
+      paddingHorizontal:'5%',
+      height:'30%',
+      borderWidth:0.5,
+      borderRadius:10,
+      backgroundColor:Colours.White300,
+      borderColor:"#000000",
+      
+
+    }
    
   });
 

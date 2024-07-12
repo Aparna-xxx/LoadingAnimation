@@ -6,11 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/animations/chaiAnimation.json",
-      "resizeMode": "contain",
-      "backgroundColor": "#FFF"
-    },
+    
     "ios": {
       "supportsTablet": true
     },
