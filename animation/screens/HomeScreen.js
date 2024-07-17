@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, Text, ImageBackground, SafeAreaView, StatusBar, TextInput, KeyboardAvoidingView,Platform,ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, SafeAreaView, StatusBar, TextInput, KeyboardAvoidingView,Platform,ScrollView,Modal,TouchableOpacity } from 'react-native';
 import Colours from '../util/Colours';
+import { useState } from 'react';
 import {
   useFonts,
   Manrope_200ExtraLight,
@@ -12,6 +13,7 @@ import {
   Manrope_800ExtraBold,
 } from '@expo-google-fonts/manrope';
 import PsgButton from '../components/PsgButton';
+import { Ionicons } from '@expo/vector-icons';
 
 const HomeScreen = () => {
   let [fontsLoaded] = useFonts({
@@ -24,9 +26,15 @@ const HomeScreen = () => {
     Manrope_800ExtraBold,
   });
 
+  const [modalVisible, setModalVisible] = useState(false);
+
   if (!fontsLoaded) {
     return null;
   }
+
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -52,13 +60,47 @@ const HomeScreen = () => {
                 <TextInput style={styles.loginText} placeholder="Password" />
               </View>
               <PsgButton title="Login" />
-              <Text style={styles.miniText}>Not a registered user? <Text style={styles.signup}>Sign up</Text> now !</Text>            
+              <Text style={styles.miniText}>
+                  Not a registered user?{' '}
+                  <Text style={styles.signup} onPress={toggleModal}>
+                    Sign up
+                  </Text>{' '}
+                  now!
+                </Text>            
             </View>
            
           </View>
         </ImageBackground>
       {/* </View> */}
       </KeyboardAvoidingView>
+      <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(false);
+          }}
+        >
+          <View style={styles.modalContainer}>
+          <TouchableOpacity style={styles.closeButton} onPress={toggleModal}>
+              <Ionicons name="close-circle-outline" size={32} style={styles.closeButtonText} />
+              
+            </TouchableOpacity>
+            <Text style={styles.modalTitle}>Sign Up</Text>
+            <View style={styles.modalContent}>
+              
+              {/* Add your sign up options here */}
+              
+                <View style={styles.signupBox}>
+                  <TextInput style={styles.loginText} placeholder="college ID" />
+                  <TextInput style={styles.loginText} placeholder="Password" />
+                  <PsgButton style={{ backgroundColor: 'white' }} textStyle={{ color: Colours.DarkBlue100, fontWeight:'bold', fontSize:20 }} title="sign up"/>
+                  
+                </View>
+                
+                </View>
+          </View>
+        </Modal>
       </ScrollView>
     </SafeAreaView>
   );
@@ -130,11 +172,12 @@ const styles = StyleSheet.create({
   loginText: {
     marginTop: '10%',
     paddingHorizontal: '5%',
-    height: '30%',
+    height: 55,
     borderWidth: 0.5,
     borderRadius: 10,
     backgroundColor: Colours.White300,
     borderColor: "#000000",
+    width:'100%'
   },
   signup:{
     color:Colours.LinkRed,
@@ -146,5 +189,49 @@ const styles = StyleSheet.create({
     paddingTop:'2%',
     fontWeight:'bold'
 
-  }
+  },
+  modalContainer: {
+    height:'50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:Colours.WhiteBlue200,
+    top:'20%',
+    borderRadius:30,
+    margin:10,
+    justifyContent:'center'
+  
+    
+  },
+  modalContent: {
+    backgroundColor: Colours.DarkBlue100,
+    borderRadius: 30,
+    padding: 20,
+    width: '90%',
+    alignItems: 'center',
+  },
+  modalTitle: {
+    fontSize: 24,
+    fontFamily: 'Manrope_500Medium',
+    color: Colours.DarkBlue100,
+    marginBottom:20,
+  },
+ 
+  signupBox:{
+    width:'100%',
+    justifyContent:'center',
+    alignItems:'center',
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 20,
+    right: 50,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  closeButtonText: {
+    color: Colours.DarkBlue100
+  },
 });
