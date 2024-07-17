@@ -10,7 +10,7 @@ import {
   Manrope_700Bold,
   Manrope_800ExtraBold,
 } from '@expo-google-fonts/manrope';
-
+import PsgButton from '../components/PsgButton.js';
 
 
 
@@ -43,8 +43,10 @@ function HomeScreen(){
                       <Text style={styles.cardTitleText} >Log into Food Zone</Text>
                       <View style={styles.loginBox}>                        
                           <TextInput style={styles.loginText}  placeholder="college ID"/ >
-                          <TextInput style={styles.loginText} placeholder="Password"/>             
+                          <TextInput style={styles.loginText} placeholder="Password"/>
+                                     
                       </View>
+                      <PsgButton title="Login"/>
                     </View>
               </View>
             </ImageBackground>
@@ -132,7 +134,7 @@ const styles = StyleSheet.create({
     },
 
     loginBox:{
-      width:'85%'
+      width:'85%',
     },
 
     loginText:{
@@ -146,7 +148,8 @@ const styles = StyleSheet.create({
       borderColor:"#000000",
       
 
-    }
+    },
+   
    
   });
 
